@@ -32,6 +32,54 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<servlet>
+		<servlet-name>UserLogin</servlet-name>
+		<servlet-class>cn.voicet.gc.servlet.UserLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserLogin</servlet-name>
+		<url-pattern>/userLogin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>NewTask</servlet-name>
+		<servlet-class>cn.voicet.gc.servlet.NewTask</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewTask</servlet-name>
+		<url-pattern>/newTask</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddTel</servlet-name>
+		<servlet-class>cn.voicet.gc.servlet.AddTel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddTel</servlet-name>
+		<url-pattern>/addTel</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AddVoice</servlet-name>
+		<servlet-class>cn.voicet.gc.servlet.AddVoice</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddVoice</servlet-name>
+		<url-pattern>/addVoice</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CommitTask</servlet-name>
+		<servlet-class>cn.voicet.gc.servlet.CommitTask</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommitTask</servlet-name>
+		<url-pattern>/commitTask</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>QueryTask</servlet-name>
+		<servlet-class>cn.voicet.gc.servlet.QueryTask</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryTask</servlet-name>
+		<url-pattern>/queryTask</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.action</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
