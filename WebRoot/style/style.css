@@ -16,6 +16,8 @@ ul{margin:0; padding:0; list-style:none;}
 .button44{width:90px; height:18px; display:inline; color:#FFF; border:medium none; background:#54A3EA;cursor:pointer;}
 .button45{width:36px; height:18px; display:inline; color:#FFF; border:medium none; background:#54A3EA;cursor:pointer;}
 
+.tabtr{background:url(../images/tab-head.jpg) repeat-x; height:20px; font-weight:bold; color:#2284E1; }
+
 /* leftCon */
 #leftCon{width:666px; height:672px; float:left; text-align:center;}
 #leftCon .input-goto{width:100px; height:18px;}

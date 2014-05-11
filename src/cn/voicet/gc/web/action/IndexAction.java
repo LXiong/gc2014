@@ -12,7 +12,7 @@ import cn.voicet.gc.util.DotRoleMenu;
 public class IndexAction extends BaseAction{
 
 	public String index(){
-		String xmlFilePath = ServletActionContext.getServletContext().getRealPath("/WEB-INF/classes/appconfig-gc.xml");
+		String xmlFilePath = ServletActionContext.getServletContext().getRealPath("/WEB-INF/classes/appconfig-gc2014.xml");
 		DotRoleMenu roleMenu = (DotRoleMenu)ServletActionContext.getServletContext().getAttribute("vta");
 		if (roleMenu == null) {
 			roleMenu = new DotRoleMenu();

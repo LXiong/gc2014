@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dot2014 product="电话自动外呼系统" provider="南京威帝通讯科技有限公司" customer="威帝通讯科技"
+	fax="02584868924" tel="02584869817" url="http://www.voicet.com.cn"
+	mail="jime6688@163.com" version="1.0">
+	<role roleid="0" describle="未登录"></role>
+	<role roleid="1" describle="系统管理员">
+		<grp name="日常工作">
+			<fun name="帐号管理" action="govBrowerAction_home.action" />
+		</grp>
+	    <grp name="数据库">
+	      	<fun name="数据库维护" action="databaseConfigAction_home.action" />
+	    </grp>
+	</role>
+	  <role roleid="2" describle="管理员">
+	    <grp name="日常工作">
+        <fun name="任务管理" action="taskManageAction_home.action" />
+        <fun name="号码管理" action="numberManageAction_home.action" />
+	    </grp>
+	  </role>
+</dot2014>

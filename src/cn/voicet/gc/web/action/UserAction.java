@@ -41,6 +41,7 @@ public class UserAction extends BaseAction implements ModelDriven<UserForm>{
 		DotSession ds=DotSession.getVTSession(request);
 		Map<String, String> map = userService.userLogin(userForm);
 		log.info("user login: "+map);
+		ds.uid = Integer.parseInt(map.get("uid"));
 		ds.roleID = map.get("roleid");
 		ds.username = map.get("username");
 		ds.roleName = map.get("rolename");

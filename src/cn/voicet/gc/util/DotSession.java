@@ -19,6 +19,7 @@ public class DotSession {
 	public String username;
 	public String roleName;
 	public String roleID;
+	public int uid;
 	public SubPathTitle subPathTitle;
 	public String rbm;
 	public String rbn;
