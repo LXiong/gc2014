@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<!-- 配置action的访问路径为.do的形式 -->
+	<constant name="struts.action.extension" value="action"></constant>
+	<!-- 配置struts的开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 配置struts的简单模式 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+	<package name="system" namespace="/" extends="struts-default">
+		<!-- 首页功能 -->
+		<action name="index" class="indexAction" method="index">
+			<result name="show_login">/WEB-INF/page/admin/login.jsp</result>
+		</action>
+		<!-- 用户登录 -->
+		<action name="userAction_*" class="userAction" method="{1}">
+			<result name="show_home">/WEB-INF/page/admin/home.jsp</result>
+			<result name="show_mainHome" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">userAction_home</param>
+			</result>
+			<result name="show_logout" type="redirectAction">index</result>
+			<!-- 处理验证登录失败, 跳转到login.jsp -->
+			<result name="show_error">/WEB-INF/page/admin/login.jsp</result>
+		</action>
+		<!-- 菜单管理 -->
+		<action name="menuManageAction_*" class="menuManageAction" method="{1}">
+			<result name="showMenu_category">/WEB-INF/page/system/menu_category.jsp</result>
+			<result name="showMenu_name">/WEB-INF/page/system/menu_name.jsp</result>
+			<result name="show_chooseImage">/WEB-INF/page/system/menu_chooseImage.jsp</result>
+			<result name="show_cutImage">/WEB-INF/page/system/menu_cutImage.jsp</result>
+		</action>
+		<!-- 系统日志查看 -->
+		<action name="systemLogAction_*" class="systemLogAction" method="{1}">
+			<result name="show_log">/WEB-INF/page/system/system_log.jsp</result>
+		</action>
+	</package>  
+	<package name="dot" namespace="/" extends="json-default">
+		<!-- 修改密码 -->
+		<action name="updatepwd" class="userAction" method="updatePassword">
+			<result type="json"></result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,20 @@
+#Thu May 08 15:00:56 CST 2014
+eclipse.preferences.version=1
+encoding//WebRoot/script/changeColor.js=UTF-8
+encoding//WebRoot/script/menu.js=UTF-8
+encoding//WebRoot/script/splitpage.js=UTF-8
+encoding//WebRoot/script/validate.js=UTF-8
+encoding//WebRoot/script/voicet-common-1.0.js=UTF-8
+encoding//src/cn/voicet/dot/datasource=UTF-8
+encoding//src/cn/voicet/dot/filter/LogonFilter.java=UTF-8
+encoding//src/cn/voicet/dot/util/DotRoleMenu.java=UTF-8
+encoding//src/cn/voicet/dot/util/GenericSuperClass.java=UTF-8
+encoding//src/cn/voicet/dot/util/PageBean.java=UTF-8
+encoding//src/cn/voicet/dot/util/PageInfo.java=UTF-8
+encoding//src/cn/voicet/dot/web/action/DatabaseConfigAction.java=gbk
+encoding//src/cn/voicet/dot/web/action/DotMenuAction.java=UTF-8
+encoding//src/cn/voicet/dot/web/action/DotUserAction.java=gbk
+encoding//src/cn/voicet/dot/web/action/MenuManageAction.java=UTF-8
+encoding//src/cn/voicet/dot/web/action/SystemLogAction.java=gbk
+encoding//src/junit/TestStringToArray.java=UTF-8
+encoding/<project>=UTF-8

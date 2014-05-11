@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+/* 全局控制 */
+body {margin:0 auto; padding:0; font-size:12px; font-family:"微软雅黑,宋体";}
+/* 重置浏览器的默认样式 */
+h1,h2,h3,p,ul,li,dl,dt,dd,img,input{margin:0; padding:0; list-style:none; border:0}
+a:link,a:visited{ text-decoration:none;}
+/* container */
+#container {margin:0 auto; width:1024px;}
+#header{height:85px; background:url(../images/logo.png) no-repeat; padding:15px 0 0 80px;}
+#header .title2{height:35px; font-size:35px; font-weight:bold; color:#0E72C7; text-align:left;}
+#header .title1{height:25px; font-size:20px; font-weight:bold; color:#0E72C7; text-align:left;}
+#header .title3{float:right; width:240px; color:#9CCFFF;}
+/* nav */
+#nav{height:30px; line-height:30px; padding:0 0 0 20px; color:#FFF; background:url(../images/nav-bg0.png) repeat-x;}
+.nav-left{width:750px; float:left; text-align:left;}
+.nav-left span{margin-right:40px;}
+#navigate a:link, #navigate a:visited{text-decoration:none; color:#FFF;}
+#navigate a:hover{text-decoration:underline;}
+.nav-right{width:200px; float:left; color:#FFF;}
+.nav-right span{margin-left:30px;}
+.nav-right a:link, .nav-right a:visited{text-decoration:none; color:#FFF;}
+.nav-right a:hover{text-decoration:underline;}
+.nav-path{height:30px; line-height:30px; color:#FFF;}
+/* main */
+#main{width:1024px; height:672px; overflow:hidden;}
+.main-left{float:left; width:155px; height:672px; background:#B1D8F9; text-align:left;}
+.main-right{float:right; width:868px; height:672px; background:#E0EEFB;}
+.clear{clear:both;}
+.mainFrame{width:868px; height:672px;background:#E0EEFB;}
+/* footer */
+#footer{height:50px; line-height:20px; text-align:center; background:#91C4EF; margin-top:1px; padding:10px 0 0 0;}
+#footer p,span{height:20px;}
+#footer a:link, #footer a:visited{text-decoration:none; color:#000;}
+#footer a:hover{text-decoration:underline;}
+
