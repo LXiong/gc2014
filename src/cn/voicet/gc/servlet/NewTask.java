@@ -46,8 +46,8 @@ public class NewTask extends HttpServlet {
 		DotAppSession das = DotAppSession.getVTAppSession(request);
 		//
 		JSONObject json = new JSONObject();
-		das.map = new HashMap();
 		try {
+			das.map = new HashMap();
 			das.map.put("tname", request.getParameter("tname"));
 			das.map.put("tcontent", request.getParameter("tcontent"));
 			json.put("code", 0);

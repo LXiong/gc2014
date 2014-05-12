@@ -52,7 +52,7 @@ public class QueryTask extends HttpServlet {
 		try {
 			das.map.put("tid", request.getParameter("tid"));
 			appDao.findTaskInfoByTid(das);
-			log.info("list1: "+das.list1);
+			log.info("list1 size: "+das.list1.size());
 			for(int i=0; i<das.list1.size(); i++){
 				json1.put("tid", das.list1.get(i).get("tid"));
 				json1.put("state", das.list1.get(i).get("state"));
