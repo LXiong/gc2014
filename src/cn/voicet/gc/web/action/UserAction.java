@@ -65,8 +65,10 @@ public class UserAction extends BaseAction implements ModelDriven<UserForm>{
 	public String updatePassword() {
 		DotSession ds=DotSession.getVTSession(request);
 		JSONObject jsonObj = new JSONObject();
+		log.info("oldPwd:"+userForm.getOldpwd());
+		log.info("newPwd:"+userForm.getNewpwd());
 		Integer res = userService.updateUserPassword(ds, userForm);
-		log.info("update pwd code: " + res);
+		log.info("update pwd code:"+res);
 		if(res==1){
 			jsonObj.put("status", "1");
 			ds.password = userForm.getNewpwd();

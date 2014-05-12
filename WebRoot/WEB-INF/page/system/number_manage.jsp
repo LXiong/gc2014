@@ -20,13 +20,14 @@
 <table class="data_list" cellpadding="0" cellspacing="0" width="100%">
    	<thead>
     <tr class="tabtr">
-        <td width="10%">号码编号</td>
+        <td width="8%">号码编号</td>
         <td width="15%">呼叫号码</td>
         <td width="15%">状态</td>
         <td width="15%">呼叫日期时间</td>
         <td width="15%">通话时长</td>
-        <td width="10%">
+        <td width="20%">
         	<p>
+        		<input type="button" value="导出" onclick="location.href='${pageContext.request.contextPath }/taskManageAction_exportTel.action?tid=<s:property value="tid"/>&rflag=<s:property value="rflag"/>'" class="button43"/>
         		<s:if test="rflag==1">
         		<input type="button" value="返回" onclick="history.go(-<s:property value='rflag'/>)" class="button43"/>
         		</s:if>

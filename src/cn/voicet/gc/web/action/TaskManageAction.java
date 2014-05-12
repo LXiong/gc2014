@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.voicet.gc.service.TaskManageService;
 import cn.voicet.gc.util.DotSession;
+import cn.voicet.gc.util.ExcelTemplateGenerator;
 import cn.voicet.gc.web.form.TaskManageForm;
 
 import com.opensymphony.xwork2.ModelDriven;
@@ -73,6 +74,38 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 		DotSession ds = DotSession.getVTSession(request);
 		taskManageService.deleteTaskInfo(ds, tid);
 		return home();
+	}
+	
+	/** 导出任务 
+	 * @throws Exception */
+	public String exportTask() throws Exception{
+		DotSession ds = DotSession.getVTSession(request);
+		taskManageService.getTaskManageInfo(ds);
+		String fileName = new String("任务统计信息".getBytes("gb2312"), "ISO8859-1") +".xls";
+	    String filePath = request.getSession().getServletContext().getRealPath("excelTemplate")+"/"+"task.xls";
+	    ExcelTemplateGenerator generator = new ExcelTemplateGenerator(filePath, fileName, 1, ds.list);
+	    generator.setColList("c0,c1,c2,c3,c4,c5,c6,c7");
+	    generator.setDrawBoard();
+	    generator.setEffectColNum(8);
+	    generator.exportExcelWithTemplate(response);
+		return null; 
+	}
+	
+	/** 导出号码 */
+	public String exportTel() throws Exception{
+		DotSession ds = DotSession.getVTSession(request);
+		log.info("exportTel tid:"+tid);
+		taskManageService.viewNumberWithTaskId(ds, tid);
+		String fileName = new String("任务号码统计信息".getBytes("gb2312"), "ISO8859-1") +".xls";
+	    String filePath = request.getSession().getServletContext().getRealPath("excelTemplate")+"/"+"task-tel.xls";
+	    ExcelTemplateGenerator generator = new ExcelTemplateGenerator(filePath, fileName, 1, ds.list);
+	    generator.setColList("c0,c1,c2,c3,c4");
+	    generator.setDrawBoard();
+	    generator.setEffectColNum(5);
+	    generator.exportExcelWithTemplate(response);
+	    rflag = rflag + 1;
+		log.info("exportTask rflag: "+rflag);
+		return null; 
 	}
 	
 	

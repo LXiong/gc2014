@@ -20,16 +20,17 @@
 <table class="data_list" cellpadding="0" cellspacing="0" width="100%">
    	<thead>
     <tr class="tabtr">
-        <td width="8%">任务编号</td>
-        <td width="8%">任务状态</td>
+        <td width="6%">任务编号</td>
+        <td width="6%">任务状态</td>
         <td width="15%">任务名称</td>
         <td width="15%">任务内容</td>
-        <td width="15%">创建日期时间</td>
-        <td width="8%">号码总数</td>
+        <td width="12%">创建日期时间</td>
+        <td width="6%">号码总数</td>
         <td width="8%">呼叫完成数</td>
         <td width="8%">呼叫应答数</td>
         <td width="15%">
         	<p>
+        		<input type="button" value="导出" onclick="location.href='${pageContext.request.contextPath }/taskManageAction_exportTask.action'" class="button43"/>
         		<input type="button" value="添加" onclick="popEditTask('add','','','')" class="button43"/>
         	</p>
         </td>
@@ -40,8 +41,8 @@
     <tr style="display:none">
         <td><s:property value="#ls.c0"/></td>
         <td><s:property value="#ls.c1==0?'停止':'激活'"/></td>
-        <td><s:property value="#ls.c2"/></td>
-        <td><s:property value="#ls.c3"/></td>
+        <td align="left" title="任务名称: <s:property value="#ls.c2"/>&#13;任务内容: <s:property value="#ls.c3"/>">&nbsp;<s:property value="#ls.c2"/></td>
+        <td align="left">&nbsp;<s:property value="#ls.c3"/></td>
         <td><s:property value="#ls.c4"/></td>
         <td><s:property value="#ls.c5"/></td>
         <td><s:property value="#ls.c6"/></td>
