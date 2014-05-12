@@ -3,6 +3,7 @@ function popEditTel(s){
 	var telt = document.getElementById("tel-title");
 	telt.innerHTML="";
 	//clear
+	document.getElementById("t1").value='';
 	if(s=="edit"){
 		telt.innerHTML="<font color='#fff'>修改号码信息</font>";
 	}else{
@@ -56,6 +57,6 @@ function popEditTel(s){
 	}; 
 }
 function subTelBt(){
-	document.telForm.action="telManageAction_saveTel.action";
+	document.telForm.action="taskManageAction_saveTel.action";
 	document.telForm.submit();
 }

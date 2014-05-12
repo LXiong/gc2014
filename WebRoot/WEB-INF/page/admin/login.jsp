@@ -26,7 +26,7 @@
  	<style type="text/css">
  		.errorMessage{padding-bottom:2px; padding-right:30px; height:5px}
  	</style>
- 	<title>江苏省扶贫办信息管理系统</title>
+ 	<title>电话自动外呼系统</title>
  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>

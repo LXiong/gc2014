@@ -29,4 +29,16 @@ public class TaskManageServiceImpl implements TaskManageService{
 		taskManageDao.saveTaskManageInfo(ds, taskManageForm);
 	}
 
+	public void setStateTaskWithTaskId(DotSession ds, int tid, int state) {
+		taskManageDao.setStateTaskWithTaskId(ds, tid ,state);
+	}
+
+	public void viewNumberWithTaskId(DotSession ds, int tid) {
+		taskManageDao.viewNumberWithTaskId(ds, tid);
+	}
+
+	public void saveTelListInfo(DotSession ds, int tid, String tellist) {
+		taskManageDao.saveTelListInfo(ds, tid, tellist);
+	}
+
 }

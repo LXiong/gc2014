@@ -40,6 +40,9 @@ ul{margin:0; padding:0; list-style:none;}
 .content table{width:100%; line-height:20px;}
 .content table td{border-right:1px solid #3B9FFF; border-bottom:1px solid #3B9FFF;}
 .content .tabtr1{background:url(../images/tab-head.jpg) repeat-x; height:20px; font-weight:bold; color:#2284E1; }
+
+
+
 .tabtr12{background:url(../images/tab-head.jpg) repeat-x; height:20px; font-weight:bold; color:#2284E1; }
 
 .content .tabtd1{border-right:0px solid red;}
@@ -146,9 +149,11 @@ ul{margin:0; padding:0; list-style:none;}
 .jiangbu-title1 .add_return{float:right; width:102px; display:inline-block; height:18px;}
 .jiangbu-title1 .j_return{width:60px;}
 .jiangbu-unit{float:right; margin-top:-15px; width:80px;}
-#jiangbu-data{width:868px; height:624px;}
+#jiangbu-data{width:868px; height:646px;}
+
 #jiangbu-data table{text-align:center; line-height:20px; border-right:1px solid #3B9FFF; border-bottom:1px solid #3B9FFF; margin-top:2px;}
 #jiangbu-data table td{border-top:1px solid #3B9FFF; border-left:1px solid #3B9FFF; empty-cells:show;}
+
 #jiangbu-data a:link, #jiangbu-data a:visited, #jiangbu-data a:active{text-decoration:none; color:#00f}
 #jiangbu-data a:hover{color:#00f; text-decoration:underline;}
 
@@ -226,3 +231,8 @@ ul{margin:0; padding:0; list-style:none;}
 .view-family-report1 .last-tab{border-bottom:1px solid #000;}
 
 .report-back-input{height:18px; width:180px; color:blue}
+
+
+/** gc2014 */
+.task-input{width:140px; height:20px;}
+

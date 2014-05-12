@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/script/task.js"></script>
 	<style type="text/css">
 		#overlay-task{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:0.5;filter:alpha(opacity=50);display:none;} 
-		#win-task{position:absolute;top:50%;left:50%;width:500px;height:240px;background:#EAECEA;border:4px solid #F7F7F7;margin:-102px 0 0 -202px;display:none;}
+		#win-task{position:absolute;top:50%;left:50%;width:400px;height:200px;background:#EAECEA;border:4px solid #F7F7F7;margin:-102px 0 0 -202px;display:none;}
 		h2{font-size:12px;height:18px;text-align:right;background:#3F89EC;border-bottom:3px solid #F7F7F7;padding:2px;cursor:move;margin-top:2px;} 
 		h2 span{border:0px solid #f90;padding:0 2px;} 
 	</style>
@@ -20,14 +20,15 @@
 <table class="data_list" cellpadding="0" cellspacing="0" width="100%">
    	<thead>
     <tr class="tabtr">
-        <td width="10%">任务编号</td>
-        <td width="10%">任务状态</td>
+        <td width="8%">任务编号</td>
+        <td width="8%">任务状态</td>
         <td width="15%">任务名称</td>
         <td width="15%">任务内容</td>
         <td width="15%">创建日期时间</td>
-        <td width="15%">呼叫完成数</td>
-        <td width="10%">呼叫应答数</td>
-        <td width="10%">
+        <td width="8%">号码总数</td>
+        <td width="8%">呼叫完成数</td>
+        <td width="8%">呼叫应答数</td>
+        <td width="15%">
         	<p>
         		<input type="button" value="添加" onclick="popEditTask('add','','','')" class="button43"/>
         	</p>
@@ -38,13 +39,16 @@
     <s:iterator value="#session.vts.list" var="ls" status="sc">
     <tr style="display:none">
         <td><s:property value="#ls.c0"/></td>
-        <td><s:property value="#ls.c1"/></td>
+        <td><s:property value="#ls.c1==0?'停止':'激活'"/></td>
         <td><s:property value="#ls.c2"/></td>
         <td><s:property value="#ls.c3"/></td>
         <td><s:property value="#ls.c4"/></td>
         <td><s:property value="#ls.c5"/></td>
         <td><s:property value="#ls.c6"/></td>
+        <td><s:property value="#ls.c7"/></td>
         <td>
+        	<a href="${pageContext.request.contextPath }/taskManageAction_viewNumber.action?tid=<s:property value="#ls.c0"/>">查看</a>
+        	<a href="${pageContext.request.contextPath }/taskManageAction_stateTask.action?tid=<s:property value="#ls.c0"/>&state=<s:property value="#ls.c1==0?1:0"/>"><s:property value="#ls.c1==0?'激活':'停止'"/></a>
         	<a href="javascript:popEditTask('edit','<s:property value="#ls.c0"/>','<s:property value="#ls.c2"/>','<s:property value="#ls.c3"/>')">修改</a>
         	<a href="javascript:if(confirm('确定要删除吗?')) location.href='${pageContext.request.contextPath }/taskManageAction_deleteTask.action?tid=<s:property value="#ls.c0"/>'">删除</a>
         </td>
@@ -68,18 +72,19 @@
 <!-- eidt or add flag -->
 <input type="hidden" id="t2" name="tasktxt"/>
 <div class="edit-list">
-	<table width="450px" cellpadding="0" cellspacing="0">
+	<table width="400px" cellpadding="0" cellspacing="0">
+		<tr height="20px"></tr>
 		<tr height="20px">
 			<td width="30%" align="right">任务名称:&nbsp;&nbsp;</td>
-			<td width="35%" align="left"><input id="t3" name="tasktxt" class="inpasstxt" type="text" maxlength="20"/></td>
+			<td width="55%" align="left"><input id="t3" name="tasktxt" class="task-input" type="text" maxlength="20"/></td>
 		</tr>
 		<tr height="20px">
-			<td width="30%" align="right">任务内容:&nbsp;&nbsp;</td>
-			<td width="35%" align="left"><input id="t4" name="tasktxt" class="inpasstxt" type="text" maxlength="20"/></td>
+			<td align="right">任务内容:&nbsp;&nbsp;</td>
+			<td align="left"><input id="t4" name="tasktxt" class="task-input" type="text" maxlength="20"/></td>
 		</tr>
 	</table>
 </div>
-<div style="margin-top:5px; margin-left:150px;">
+<div style="margin-top:5px; margin-left:120px;">
 	<input type="button" value="确定" class="button4" onclick="subTaskBt()"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input id="close" type="button" value="取消" class="button4"/>
 </div>

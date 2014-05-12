@@ -82,5 +82,58 @@ public class TaskManageDaoImpl extends BaseDaoImpl implements TaskManageDao {
 			}
 		});
 	}
+	
+	public void setStateTaskWithTaskId(final DotSession ds, final int tid, final int state) {
+		this.getJdbcTemplate().execute(new ConnectionCallback() {
+			public Object doInConnection(Connection conn) throws SQLException,
+					DataAccessException {
+				CallableStatement cs = conn.prepareCall("{call sp_task_setstate(?,?,?)}");
+				cs.setInt(1, ds.uid);
+				cs.setInt(2, tid);
+				cs.setInt(3, state);
+				cs.execute();
+				return null;
+			}
+		});
+	}
+
+	public void viewNumberWithTaskId(final DotSession ds, final int tid) {
+		this.getJdbcTemplate().execute(new ConnectionCallback() {
+			public Object doInConnection(Connection conn) throws SQLException,
+					DataAccessException {
+				CallableStatement cs = conn.prepareCall("{call sp_tasktel_list(?,?)}");
+				cs.setInt(1, ds.uid);
+				cs.setInt(2, tid);
+				cs.execute();
+				ResultSet rs = cs.getResultSet();
+				Map map;
+				ds.initData();
+				ds.list = new ArrayList();
+				if(null!=rs){
+					while(rs.next()){
+						map = new HashMap();
+						ds.putMapData(map, rs);
+		        		ds.list.add(map);
+					}
+				}
+				return null;
+			}
+		});
+	}
+
+	public void saveTelListInfo(final DotSession ds, final int tid, final String tellist) {
+		this.getJdbcTemplate().execute(new ConnectionCallback() {
+			public Object doInConnection(Connection conn) throws SQLException,
+					DataAccessException {
+				CallableStatement cs = null; 
+					cs = conn.prepareCall("{call sp_tasktel_add(?,?,?)}");
+					cs.setInt(1, ds.uid);
+					cs.setInt(2, tid);
+					cs.setString(3, tellist);
+					cs.execute();
+					return null;
+				}
+		});
+	}
 
 }

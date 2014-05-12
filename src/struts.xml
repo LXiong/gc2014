@@ -29,7 +29,9 @@
 		<!-- 任务管理  -->
 		<action name="taskManageAction_*" class="taskManageAction" method="{1}">
 			<result name="show_task">/WEB-INF/page/system/task_manage.jsp</result>
+			<result name="show_number">/WEB-INF/page/system/number_manage.jsp</result>
 		</action>
+		
 		<!-- 号码管理 -->
 		<action name="numberManageAction_*" class="numberManageAction" method="{1}">
 			<result name="show_number">/WEB-INF/page/system/number_manage.jsp</result>
