@@ -46,7 +46,7 @@
         <td><s:property value="#ls.c6"/></td>
         <td>
         	<a href="javascript:popEditTask('edit','<s:property value="#ls.c0"/>','<s:property value="#ls.c2"/>','<s:property value="#ls.c3"/>')">修改</a>
-        	<a href="${pageContext.request.contextPath }/taskManageAction_deleteTask.action?tid=<s:property value="#ls.c0"/>">删除</a>
+        	<a href="javascript:if(confirm('确定要删除吗?')) location.href='${pageContext.request.contextPath }/taskManageAction_deleteTask.action?tid=<s:property value="#ls.c0"/>'">删除</a>
         </td>
     </tr>
     </s:iterator>
