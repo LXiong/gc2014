@@ -149,7 +149,20 @@ public class DotRoleMenu {
 		}
 		return null;
 	}
-	
+	public String getListString(String lstName,int iVal)
+	{
+		List l=GetList(lstName);
+		ListItem it;
+		for(int i=0;i<l.size();i++)
+		{
+			it=(ListItem)l.get(i);
+			if(it.id==iVal) 
+			{
+				return it.str;
+			}
+		}
+		return "";
+	}
 	public boolean loadInfoFromXML(String xmlFileName) {
 		 Document document = null; 
 		 SAXReader reader = new SAXReader(); 

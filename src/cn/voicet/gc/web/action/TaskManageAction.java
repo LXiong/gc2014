@@ -62,7 +62,7 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 		DotSession ds = DotSession.getVTSession(request);
 		log.info("saveTel tid: "+tid);
 		log.info("saveTel tellist: "+tellist);
-		taskManageService.saveTelListInfo(ds, tid, tellist);
+		taskManageService.saveTelListInfo(ds, tid, ttid, tellist, eflag);
 		rflag = rflag + 1;
 		log.info("saveTel rflag: "+rflag);
 		log.info("Save telnumber success");
@@ -108,11 +108,42 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 		return null; 
 	}
 	
+	/** 删除指定号码 */
+	public String deleteTel(){
+		DotSession ds = DotSession.getVTSession(request);
+		log.info("deleteTel>> tid:"+tid+", ttid:"+ttid);
+		taskManageService.deleteTelInfoWithTaskId(ds, tid, ttid);
+		rflag = rflag + 1;
+		log.info("deleteTel success");
+		return viewNumber();
+	}
+	
+	/** 清空当前任务的全部号码 */
+	public String emptyTel(){
+		DotSession ds = DotSession.getVTSession(request);
+		log.info("emptyTel>> tid:"+tid);
+		taskManageService.emptyTelInfoWithCurTask(ds, tid);
+		rflag = rflag + 1;
+		log.info("emptyTel success");
+		return viewNumber();
+	}
+	
+	/** 重置所有呼叫的状态为未呼叫状态 */
+	public String resetTel(){
+		DotSession ds = DotSession.getVTSession(request);
+		log.info("resetTel>> tid:"+tid);
+		taskManageService.resetTelInfoWithCurTask(ds, tid);
+		rflag = rflag + 1;
+		log.info("resetTel success");
+		return viewNumber();
+	}
 	
 	private int tid;	//任务号
 	private int state;	//任务状态	0:停止,1:激活
 	private String tellist;	//号码列表
 	private int rflag = 1;	//return flag
+	private int ttid;
+	private int eflag;	//0:添加,1:修改
 	public int getTid() {
 		return tid;
 	}
@@ -136,5 +167,17 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 	}
 	public void setRflag(int rflag) {
 		this.rflag = rflag;
+	}
+	public int getTtid() {
+		return ttid;
+	}
+	public void setTtid(int ttid) {
+		this.ttid = ttid;
+	}
+	public int getEflag() {
+		return eflag;
+	}
+	public void setEflag(int eflag) {
+		this.eflag = eflag;
 	}
 }

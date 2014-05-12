@@ -14,41 +14,73 @@
 		h2{font-size:12px;height:18px;text-align:right;background:#3F89EC;border-bottom:3px solid #F7F7F7;padding:2px;cursor:move;margin-top:2px;} 
 		h2 span{border:0px solid #f90;padding:0 2px;} 
 	</style>
+	<script type="text/javascript">
+		function emptyTel(){
+			if(confirm('您确定要清空吗？')){
+				document.form1.action="taskManageAction_emptyTel.action";
+				document.form1.submit();
+			}
+		}
+		function resetTel(){
+			if(confirm('您确定要重置吗？')){
+				document.form1.action="taskManageAction_resetTel.action";
+				document.form1.submit();
+			}
+		}
+	</script>
 </head>
 <body style="background:#E0EEFB;">
+<form name="form1" action="" method="post">
+	<input type="hidden" value="<s:property value="tid"/>" name="tid"/>
+	<input type="hidden" value="<s:property value="rflag"/>" name="rflag"/>
+</form>
 <div id="jiangbu-data">
+<p id="task-tel-title">
+	<span>
+		<s:if test="rflag==1">
+		<input type="button" value="返回" onclick="history.go(-<s:property value='rflag'/>)" class="button43"/>
+		</s:if>
+		<s:else>
+ 		<input type="button" value="返回" onclick="location.href='${pageContext.request.contextPath }/taskManageAction_home.action'" class="button43"/>
+ 		</s:else>
+ 	</span>
+	<span>
+		<input type="button" value="清空" onclick="emptyTel()" class="button43"/>
+	</span>
+	<span>
+		<input type="button" value="重置" onclick="resetTel()" class="button43"/>
+	</span>
+	<span>		
+		<input type="button" value="导出" onclick="location.href='${pageContext.request.contextPath }/taskManageAction_exportTel.action?tid=<s:property value="tid"/>&rflag=<s:property value="rflag"/>'" class="button43"/>
+	</span>
+	<span>
+ 		<input type="button" value="添加" onclick="popEditTel('add','','')" class="button43"/>
+    </span>	
+</p>
 <table class="data_list" cellpadding="0" cellspacing="0" width="100%">
    	<thead>
     <tr class="tabtr">
         <td width="8%">号码编号</td>
         <td width="15%">呼叫号码</td>
         <td width="15%">状态</td>
-        <td width="15%">呼叫日期时间</td>
+        <td width="15%">呼叫时间</td>
         <td width="15%">通话时长</td>
-        <td width="20%">
-        	<p>
-        		<input type="button" value="导出" onclick="location.href='${pageContext.request.contextPath }/taskManageAction_exportTel.action?tid=<s:property value="tid"/>&rflag=<s:property value="rflag"/>'" class="button43"/>
-        		<s:if test="rflag==1">
-        		<input type="button" value="返回" onclick="history.go(-<s:property value='rflag'/>)" class="button43"/>
-        		</s:if>
-        		<s:else>
-        		<input type="button" value="返回" onclick="location.href='${pageContext.request.contextPath }/taskManageAction_home.action'" class="button43"/>
-        		</s:else>
-        		<input type="button" value="添加" onclick="popEditTel('add')" class="button43"/>
-        	</p>
-        </td>
+        <td width="20%">操作</td>
     </tr>
     </thead>
     <tbody id="splitpage">
     <s:iterator value="#session.vts.list" var="ls" status="sc">
     <tr style="display:none">
         <td><s:property value="#ls.c0"/></td>
-        <td><s:property value="#ls.c1"/></td>
-        <td><s:property value="#ls.c2"/></td>
+        <td align="left">&nbsp;<s:property value="#ls.c1"/></td>
+        <td>
+        	<s:property value="#application.vta.getListString('callresult',#ls.c2)"/>
+        </td>
         <td><s:property value="#ls.c3"/></td>
         <td><s:property value="#ls.c4"/></td>
         <td>
-        	
+        	<a href="javascript:popEditTel('edit','<s:property value="#ls.c0"/>','<s:property value="#ls.c1"/>')">修改</a>
+        	<a href="javascript:if(confirm('确定要删除吗?')) location.href='${pageContext.request.contextPath }/taskManageAction_deleteTel.action?tid=<s:property value="tid"/>&ttid=<s:property value="#ls.c0"/>&rflag=<s:property value="rflag"/>'">删除</a>
         </td>
     </tr>
     </s:iterator>
@@ -67,17 +99,20 @@
 <form name="telForm" action="" method="post">
 <input type="hidden" name="rflag" value="<s:property value='rflag'/>"/>
 <input type="hidden" name="tid" value="<s:property value='tid'/>"/>
+<input type="hidden" id="t0" name="ttid" value=""/>
+<!-- eidt flag -->
+<input type="hidden" id="eflag" name="eflag" value=""/>
 <div class="edit-list">
 	<table width="400px" cellpadding="0" cellspacing="0">
 		<tr height="10px"></tr>
 		<tr>
 			<td width="10%"></td>
-			<td>号码列表(多个号码用,隔开):&nbsp;&nbsp;</td>
+			<td><span id="teltitle">号码列表(多个号码用,隔开):</span>&nbsp;&nbsp;</td>
 		</tr>
 		<tr height="20px">
 			<td width="10%"></td>
 			<td>
-				<textarea rows="3" cols="35" id="t1" name="tellist"></textarea>
+				<textarea rows="3" cols="35" style="width:300px; height:80px; resize:none;" id="t1" name="tellist"></textarea>
 			</td>
 		</tr>
 	</table>

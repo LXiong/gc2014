@@ -10,5 +10,8 @@ public interface TaskManageService {
 	void saveTaskManageInfo(DotSession ds, TaskManageForm taskManageForm);
 	void setStateTaskWithTaskId(DotSession ds, int tid, int state);
 	void viewNumberWithTaskId(DotSession ds, int tid);
-	void saveTelListInfo(DotSession ds, int tid, String tellist);
+	void saveTelListInfo(DotSession ds, int tid, int ttid, String tellist, int eflag);
+	void deleteTelInfoWithTaskId(DotSession ds, int tid, int ttid);
+	void emptyTelInfoWithCurTask(DotSession ds, int tid);
+	void resetTelInfoWithCurTask(DotSession ds, int tid);
 }

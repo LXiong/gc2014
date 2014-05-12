@@ -37,8 +37,20 @@ public class TaskManageServiceImpl implements TaskManageService{
 		taskManageDao.viewNumberWithTaskId(ds, tid);
 	}
 
-	public void saveTelListInfo(DotSession ds, int tid, String tellist) {
-		taskManageDao.saveTelListInfo(ds, tid, tellist);
+	public void saveTelListInfo(DotSession ds, int tid, int ttid, String tellist, int eflag) {
+		taskManageDao.saveTelListInfo(ds, tid, ttid, tellist, eflag);
+	}
+
+	public void deleteTelInfoWithTaskId(DotSession ds, int tid, int ttid) {
+		taskManageDao.deleteTelInfoWithTaskId(ds, tid, ttid);
+	}
+
+	public void emptyTelInfoWithCurTask(DotSession ds, int tid) {
+		taskManageDao.emptyTelInfoWithCurTask(ds, tid);
+	}
+
+	public void resetTelInfoWithCurTask(DotSession ds, int tid) {
+		taskManageDao.resetTelInfoWithCurTask(ds, tid);
 	}
 
 }

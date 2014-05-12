@@ -1,13 +1,20 @@
-function popEditTel(s){
+function popEditTel(s,t1,t2){
 	//title
 	var telt = document.getElementById("tel-title");
 	telt.innerHTML="";
+	document.getElementById("teltitle").innerHTML="";
 	//clear
 	document.getElementById("t1").value='';
 	if(s=="edit"){
 		telt.innerHTML="<font color='#fff'>修改号码信息</font>";
+		document.getElementById("teltitle").innerHTML="号码:";
+		document.getElementById("eflag").value=1;
+		document.getElementById("t0").value=t1;
+		document.getElementById("t1").value=t2;
 	}else{
 		telt.innerHTML="<font color='#fff'>添加号码信息</font>";
+		document.getElementById("teltitle").innerHTML="号码列表(多个号码用,隔开):";
+		document.getElementById("eflag").value=0;
 	}
 	
 	

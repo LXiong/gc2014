@@ -234,5 +234,6 @@ ul{margin:0; padding:0; list-style:none;}
 
 
 /** gc2014 */
-.task-input{width:140px; height:20px;}
-
+.task-input{width:302px; height:20px;}
+#task-tel-title{width:866px; height:20px; line-height:22px; padding-top:2px;}
+#task-tel-title span{float:right; width:60px;}

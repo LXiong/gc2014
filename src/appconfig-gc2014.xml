@@ -17,4 +17,14 @@
         <fun name="号码簿管理" action="numberManageAction_home.action" />
 	    </grp>
 	  </role>
+	  <list name="taskstate" describle="任务状态">
+		<item id="0" name="暂停中" />
+		<item id="1" name="执行中" />
+		<item id="2" name="已完成" />
+	</list>
+	  <list name="callresult" describle="呼叫状态">
+		<item id="0" name="未呼叫" />
+		<item id="1" name="呼叫成功" />
+		<item id="2" name="呼叫失败" />
+	</list>
 </dot2014>

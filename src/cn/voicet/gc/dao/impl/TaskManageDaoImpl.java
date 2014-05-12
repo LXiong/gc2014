@@ -121,18 +121,66 @@ public class TaskManageDaoImpl extends BaseDaoImpl implements TaskManageDao {
 		});
 	}
 
-	public void saveTelListInfo(final DotSession ds, final int tid, final String tellist) {
+	public void saveTelListInfo(final DotSession ds, final int tid, final int ttid, final String tellist, final int eflag) {
 		this.getJdbcTemplate().execute(new ConnectionCallback() {
 			public Object doInConnection(Connection conn) throws SQLException,
 					DataAccessException {
-				CallableStatement cs = null; 
-					cs = conn.prepareCall("{call sp_tasktel_add(?,?,?)}");
-					cs.setInt(1, ds.uid);
-					cs.setInt(2, tid);
-					cs.setString(3, tellist);
+					CallableStatement cs = null; 
+					if(eflag==0){
+						cs = conn.prepareCall("{call sp_tasktel_add(?,?,?)}");
+						cs.setInt(1, ds.uid);
+						cs.setInt(2, tid);
+						cs.setString(3, tellist);
+					}else{
+						cs = conn.prepareCall("{call sp_tasktel_update(?,?,?,?)}");
+						cs.setInt(1, ds.uid);
+						cs.setInt(2, tid);
+						cs.setInt(3, ttid);
+						cs.setString(4, tellist);
+					}
 					cs.execute();
 					return null;
 				}
+		});
+	}
+
+	public void deleteTelInfoWithTaskId(final DotSession ds, final int tid, final int ttid) {
+		this.getJdbcTemplate().execute(new ConnectionCallback() {
+			public Object doInConnection(Connection conn) throws SQLException,
+					DataAccessException {
+				CallableStatement cs = conn.prepareCall("{call sp_tasktel_delete(?,?,?)}");
+				cs.setInt(1, ds.uid);
+				cs.setInt(2, tid);
+				cs.setInt(3, ttid);
+				cs.execute();
+				return null;
+			}
+		});
+	}
+
+	public void emptyTelInfoWithCurTask(final DotSession ds, final int tid) {
+		this.getJdbcTemplate().execute(new ConnectionCallback() {
+			public Object doInConnection(Connection conn) throws SQLException,
+					DataAccessException {
+				CallableStatement cs = conn.prepareCall("{call sp_tasktel_empty(?,?)}");
+				cs.setInt(1, ds.uid);
+				cs.setInt(2, tid);
+				cs.execute();
+				return null;
+			}
+		});
+	}
+
+	public void resetTelInfoWithCurTask(final DotSession ds, final int tid) {
+		this.getJdbcTemplate().execute(new ConnectionCallback() {
+			public Object doInConnection(Connection conn) throws SQLException,
+					DataAccessException {
+				CallableStatement cs = conn.prepareCall("{call sp_tasktel_reset(?,?)}");
+				cs.setInt(1, ds.uid);
+				cs.setInt(2, tid);
+				cs.execute();
+				return null;
+			}
 		});
 	}
 
