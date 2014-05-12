@@ -25,6 +25,7 @@ public class LogonFilter implements Filter {
 	 */
 	public void init(FilterConfig arg0) throws ServletException {
 		list.add("/index.action");
+		list.add("/ajaxlogin.action");
 		list.add("/userAction_login.action");
 		list.add("/error.jsp");
 		list.add("/userAction_home.action");

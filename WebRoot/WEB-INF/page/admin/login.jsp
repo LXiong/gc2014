@@ -1,28 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ page import="java.net.*" %>
 <%@taglib uri="/struts-tags" prefix="s" %>
-<%
-	String account = "";
-	String password = "";
-	String checked = "";
-	Cookie cookies[] = request.getCookies();
-	for (int i=0; cookies!=null && i<cookies.length; i++) {
-		Cookie cookie = cookies[i];
-		if (cookie!=null && "account".equals(cookie.getName())) {
-			account = URLDecoder.decode(cookie.getValue(),"UTF-8");	
-			checked = "checked";
-		}
-		if (cookie!=null && "password".equals(cookie.getName())) {
-			password = cookie.getValue();
-		}
-	}
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/style/style-b.css" />
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/style/style.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath }/script/jquery-1.5.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/script/cookie.js"></script>
+ 	<script type="text/javascript" src="${pageContext.request.contextPath }/script/login.js"></script>
+ 	<script type="text/javascript">
+ 	$(document).ready(function() {
+ 		document.all.account.focus();
+		try {
+			var account = Cookie.getCookie("account2");
+			var password =  Cookie.getCookie("password2");
+			if(account!="" && account!=null){
+				$("#account").val(account);
+				$("#password").val(password);
+				$("#rememberPass").attr("checked", true); 
+			}
+		} catch(e) {
+			
+		}
+ 	});
+ 	document.onkeydown = function(e) {   
+		var theEvent = e || window.event;   
+		var code = theEvent.keyCode || theEvent.which || theEvent.charCode; 
+		if (code == 13) {   
+    		login();
+    		return false;   
+		}   
+		return true;
+	}
+ 	</script>
  	<style type="text/css">
  		.errorMessage{padding-bottom:2px; padding-right:30px; height:5px}
  	</style>
@@ -48,7 +59,7 @@
 					</tr>
 					<tr height="130px">
 						<td background="${pageContext.request.contextPath }/images/vt_rec_login2.png">
-							<form name="Form1" action="${pageContext.request.contextPath}/userAction_login.action" method="post" onsubmit="return check()">
+							<form name="Form1" action="" method="post">
 							<table cellpadding="0" cellspacing="0">
 								<tr>
 									<td width="284px"></td>
@@ -61,22 +72,22 @@
 											<tbody>
 												<tr height="31px" style="padding-top:6px;">
 													<th>账号&nbsp;</th>
-													<td><input type="text" id="account" name="account" value="<%=account %>" tabindex="1" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
+													<td><input type="text" id="account" name="account" tabindex="1" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
 												</tr>
 												<tr height="31px">
 													<th>密码&nbsp;</th>
-													<td><input type="password" id="password" name="password" value="<%=password %>" tabindex="2" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
+													<td><input type="password" id="password" name="password" tabindex="2" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
 												</tr>
 												<tr height="31px">
 													<th></th>
 													<td>
-														<input type="checkbox" id="rememberPass" name="rememberPass" value="yes" <%=checked %> class="cbox-midd"/><label for="auto" class="lab-midd">记住密码</label>
+														<input type="checkbox" id="rememberPass" name="rememberPass" value="yes" class="cbox-midd"/><label for="auto" class="lab-midd">记住密码</label>
 													</td>
 												</tr>
 												<tr height="30px">
 													<th></th>
 													<td>
-														<input type="submit" value="登&nbsp;&nbsp;录" class="button4"/>
+														<input type="button" onclick="login()" value="登&nbsp;&nbsp;录" class="button4"/>
 													</td>
 												</tr>
 											</tbody>
@@ -96,25 +107,5 @@
 			</td>
 		</tr>
 	</table>
-<script type="text/javascript" src="${pageContext.request.contextPath }/script/validate.js"></script>
-<!-- 登录时获取焦点 -->
-<script type="text/javascript">
- 	$(document).ready(function() {
-		document.all.account.focus();
-	});
-	function check(){
-	    var theForm = document.forms[0];
-	    if(!checkNull(theForm.account)){
-			alert("请输入用户名");
-			theForm.account.focus(); 
-			return false;
-		}
-		if(Trim(theForm.account.value)==""){
-			alert("请输入用户名");
-			theForm.account.focus();
-			return false;
-	    }
-	}
-</script>
 </body>
 </html>

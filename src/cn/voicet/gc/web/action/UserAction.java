@@ -31,9 +31,9 @@ public class UserAction extends BaseAction implements ModelDriven<UserForm>{
 		return userForm;
 	}
 	
-	/** 用户登录 
-	 * @throws Exception */
-	public String login() throws Exception{
+	public String ajaxlogin(){
+		log.info("account:"+userForm.getAccount()+", password:"+userForm.getPassword());
+		JSONObject json = new JSONObject();
 		if (request.getSession().getAttribute("vts")==null) {
 			DotSession ds = new DotSession();
 			request.getSession().setAttribute("vts", ds);
@@ -47,15 +47,23 @@ public class UserAction extends BaseAction implements ModelDriven<UserForm>{
 		ds.roleName = map.get("rolename");
 		ds.password = userForm.getPassword();
 		ds.account = userForm.getAccount();
-		if (ds.roleID.equals("0")) {
-			this.addFieldError("error", "您输入的账号或密码不正确");
-			return "show_error";
+		
+		if(!ds.roleID.equals("0")){
+			json.put("status", "ok");
+		}else{
+			json.put("status", "error");
 		}
-		//记住密码操作
-		LogonUtils.rememberPassByCookie(request, response);
-		return "show_mainHome";
+		try {
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(json.toString());
+			response.getWriter().flush();
+		} catch (IOException e) {
+			log.error(e);
+		}
+		
+		return null;
 	}
-	
+
 	public String home(){
 		log.info("has login");
 		return "show_home";
