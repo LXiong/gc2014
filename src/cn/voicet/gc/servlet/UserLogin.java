@@ -41,37 +41,44 @@ public class UserLogin extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		//
-		if (request.getSession().getAttribute("vtas")==null) {
-			DotAppSession das = new DotAppSession();
-			request.getSession().setAttribute("vtas", das);
-		}
 		DotAppSession das = DotAppSession.getVTAppSession(request);
 		//
-		String account = null;
-		String password = null;
+		String account=null;
+		String password=null;
 		JSONObject json = new JSONObject();
 		try {
-			account = request.getParameter("account");
-			password = request.getParameter("pwd");
-			Map map = appDao.userLoginPost(account, password);
-			log.info("map: "+map);
-			//
-			if(null!=map && map.size()>0 && !map.get("roleid").equals("0")){
-				json.put("uid", map.get("uid"));
-				das.uid = Integer.parseInt((String)map.get("uid"));
-				json.put("roleid", map.get("roleid"));
-				json.put("username", map.get("username"));
-				json.put("rolename", map.get("rolename"));
-				json.put("code", 0);
-				json.put("msg", "success");
-			}else{
-				json.put("code", 1);
-				json.put("msg", "Account or password error");
+			if(!das.isLogin())
+			{
+				account = request.getParameter("account");
+				password = request.getParameter("pwd");
+				Map map = appDao.userLoginPost(account, password);
+				log.info("map: "+map);
+				//
+				if(null!=map && map.size()>0 && !map.get("roleid").equals("0"))
+				{
+					das.uid = Integer.parseInt((String)map.get("uid"));
+					json.put("uid", map.get("uid"));
+					json.put("roleid", map.get("roleid"));
+					json.put("username", map.get("username"));
+					json.put("rolename", map.get("rolename"));
+					json.put("code", 0);
+					json.put("msg", "登录成功");
+					das.loginState = "yes";
+				}
+				else
+				{
+					json.put("code", 1);
+					json.put("msg", "账号或密码错误");
+				}
+			}
+			else
+			{
+				json.put("code", 2);
+				json.put("msg", "已经登录");
 			}
 		} catch (Exception e) {
-			json.put("code", 2);
-			json.put("msg", "request error");
+			json.put("code", 4);
+			json.put("msg", "请求错误");
 		}
 		out.println(json);
 		out.flush();

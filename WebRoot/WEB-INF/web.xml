@@ -57,12 +57,12 @@
 		<url-pattern>/addTel</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>AddVoice</servlet-name>
-		<servlet-class>cn.voicet.gc.servlet.AddVoice</servlet-class>
+		<servlet-name>AddContent</servlet-name>
+		<servlet-class>cn.voicet.gc.servlet.AddContent</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>AddVoice</servlet-name>
-		<url-pattern>/addVoice</url-pattern>
+		<servlet-name>AddContent</servlet-name>
+		<url-pattern>/addContent</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>CommitTask</servlet-name>

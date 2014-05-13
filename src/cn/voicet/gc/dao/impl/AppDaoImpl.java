@@ -56,10 +56,11 @@ public class AppDaoImpl extends BaseDaoImpl implements AppDao {
 				CallableStatement cs = conn.prepareCall("{call sp_task_add(?,?,?,?)}");
 				cs.setInt(1, das.uid);
 				cs.setString(2, (String)das.map.get("tname"));
-				cs.setString(3, (String)das.map.get("tcontent"));
+				cs.setString(3, (String)das.map.get("content"));
 				cs.registerOutParameter(4, Types.INTEGER);
 				cs.execute();
 				das.tid = cs.getInt(4);
+				
 				return null;
 			}
 		});
@@ -73,8 +74,22 @@ public class AppDaoImpl extends BaseDaoImpl implements AppDao {
 				CallableStatement cs = conn.prepareCall("{call sp_tasktel_add(?,?,?)}");
 				cs.setInt(1, das.uid);
 				cs.setInt(2, das.tid);
-				cs.setString(3, (String)das.map.get("tellist"));
+				StringBuffer sb = new StringBuffer();
+				for(int i=0; i<das.telList.size(); i++){
+					sb.append(das.telList.get(i)+",");
+				}
+				String tels = sb.toString();
+				System.out.println("tellist:"+tels);
+				cs.setString(3, tels);
 				cs.execute();
+				if(das.iTaskState==1)
+				{
+					cs = conn.prepareCall("{call sp_task_setstate(?,?,?)}");
+					cs.setInt(1, das.uid);
+					cs.setInt(2, das.tid);
+					cs.setInt(3, 1);
+					cs.execute();
+				}
 				return null;
 			}
 		});
@@ -85,8 +100,9 @@ public class AppDaoImpl extends BaseDaoImpl implements AppDao {
 		this.getJdbcTemplate().execute(new ConnectionCallback() {
 			public Object doInConnection(Connection conn) throws SQLException,
 					DataAccessException {
-				CallableStatement cs = conn.prepareCall("{call sp_task_list(?)}");
+				CallableStatement cs = conn.prepareCall("{call sp_tasktel_list(?,?)}");
 				cs.setInt(1, das.uid);
+				cs.setInt(2, das.tid);
 				cs.execute();
 				Map map;
 				ResultSet rs = cs.getResultSet();

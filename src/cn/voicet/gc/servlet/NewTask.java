@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +19,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import cn.voicet.gc.dao.AppDao;
 import cn.voicet.gc.util.DotAppSession;
 
+/**
+ * 添加一个新任务 
+ */
 @SuppressWarnings("serial")
 public class NewTask extends HttpServlet {
 	
@@ -46,16 +48,31 @@ public class NewTask extends HttpServlet {
 		DotAppSession das = DotAppSession.getVTAppSession(request);
 		//
 		JSONObject json = new JSONObject();
-		try {
-			das.map = new HashMap();
-			das.map.put("tname", request.getParameter("tname"));
-			das.map.put("tcontent", request.getParameter("tcontent"));
-			json.put("code", 0);
-			json.put("msg", "success");
-		} catch (Exception e) {
-			json.put("code", 2);
-			json.put("msg", "request error");
+		if(das.isLogin())
+		{
+			try {
+				das.map = new HashMap();
+				String content = request.getParameter("content");
+				das.map.put("tname", request.getParameter("tname"));
+				das.telList = new ArrayList();
+				if(null!=content && content.length()>0)
+				{
+					das.map.put("content", content);
+				}
+				json.put("code", 0);
+				json.put("msg", "任务已添加,名称["+(String)request.getParameter("tname")+"]");
+				
+			} catch (Exception e) {
+				json.put("code", 5);
+				json.put("msg", "任务添加失败");
+			}
 		}
+		else
+		{
+			json.put("code", 3);
+			json.put("msg", "请先登录");
+		}
+		//
 		out.println(json);
 		out.flush();
 		out.close();

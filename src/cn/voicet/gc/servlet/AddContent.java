@@ -21,12 +21,12 @@ import cn.voicet.gc.dao.AppDao;
 import cn.voicet.gc.util.DotAppSession;
 
 /**
- * 为作业添加号码
+ * 为任务添加内容
  */
 @SuppressWarnings("serial")
-public class AddVoice extends HttpServlet {
+public class AddContent extends HttpServlet {
 	
-	private static Logger log = Logger.getLogger(AddVoice.class);
+	private static Logger log = Logger.getLogger(AddContent.class);
 	private AppDao appDao;
 	
 	public void init() throws ServletException {
@@ -49,13 +49,29 @@ public class AddVoice extends HttpServlet {
 		DotAppSession das = DotAppSession.getVTAppSession(request);
 		//
 		JSONObject json = new JSONObject();
-		try {
-			das.map.put("content", request.getParameter("content"));
-			json.put("code", 0);
-			json.put("msg", "success");
-		} catch (Exception e) {
-			json.put("code", 2);
-			json.put("msg", "request error");
+		if(das.isLogin())
+		{
+			if(null!=das.telList)
+			{
+				try {
+					das.map.put("content", request.getParameter("content"));
+					json.put("code", 0);
+					json.put("msg", "添加任务内容成功");
+				} catch (Exception e) {
+					json.put("code", 4);
+					json.put("msg", "请求错误");
+				}
+			}
+			else
+			{
+				json.put("code", 6);
+				json.put("msg", "请先创建一个任务");
+			}
+		}
+		else
+		{
+			json.put("code", 3);
+			json.put("msg", "请先登录");
 		}
 		out.println(json);
 		out.flush();

@@ -13,10 +13,13 @@ public class DotAppSession {
 	
 	public String keyb;
 	public String dsn;
+	public String loginState;
 	public int uid;	//用户ID号
 	public int tid;	//任务号
 	public int oid;
 	public int iid;
+	public int iTaskState;
+	public List telList;
 	public List<Map> list1;
 	public List<Map> list2;
 	public List<Map> list3;
@@ -34,6 +37,12 @@ public class DotAppSession {
 		iid = 0;
 		tid = 0;
 		map = null;
+		loginState="no";
+		iTaskState=0;
+	}
+	public boolean isLogin()
+	{
+		return loginState =="yes";
 	}
 	
 	public void initData() {
@@ -45,18 +54,15 @@ public class DotAppSession {
 		list6 = new ArrayList();
 	}
 	
-	public static DotAppSession getVTAppSession(HttpServletRequest request){
+	public static DotAppSession getVTAppSession(HttpServletRequest request)
+	{
 		DotAppSession das = (DotAppSession) request.getSession().getAttribute("vtas");
-		return das;
-	}
-	
-	/** 检测是否已经ShakeHand */
-	public static boolean checkHasUid(HttpServletRequest request){
-		String shake = (String) request.getSession().getAttribute("shakeHand");
-		if(null!=shake && shake.equals("yes")){
-			return true;
+		if(null==das)
+		{
+			das = new DotAppSession();
+			request.getSession().setAttribute("vtas", das);
 		}
-		return false;
+		return das;
 	}
 	
 	/** 将结果集数据放进Map */
