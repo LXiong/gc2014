@@ -61,7 +61,7 @@
 </table>
 </div>
 <div class="split-page">
-	<input type="hidden" id="pageRows" value="23"/>
+	<input type="hidden" id="pageRows" value="29"/>
 	<div id="changePage"></div>
 </div>
 

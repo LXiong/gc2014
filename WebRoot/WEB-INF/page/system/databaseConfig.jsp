@@ -15,7 +15,7 @@
         <p>数据库名称：<s:property value="#session.vts.map.databasename"/></p>
         <p>数据库文件列表：</p>
         <table cellpadding="0" cellspacing="0">
-        	<tr class="tabtr">
+        	<tr>
             	<td>逻辑名</td>
                 <td>磁盘文件名</td>
                 <td>大小</td>

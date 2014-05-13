@@ -64,6 +64,11 @@ function popEditTel(s,t1,t2){
 	}; 
 }
 function subTelBt(){
-	document.telForm.action="taskManageAction_saveTel.action";
-	document.telForm.submit();
+	if(document.getElementById("t1").value!=''){
+		document.telForm.action="taskManageAction_saveTel.action";
+		document.telForm.submit();
+	}else{
+		alert("号码不能为空");
+	}
+	
 }

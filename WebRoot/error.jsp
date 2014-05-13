@@ -7,7 +7,7 @@
 		    width: 866px;
 		    height: 672px;
 		    margin: 0px auto;
-		    background: url('../images/err_back.png') repeat-x scroll 0% 0% transparent;
+		    background: url('${pageContext.request.contextPath}/images/err_back.png') repeat-x scroll 0% 0% transparent;
 		    position: relative;
 		}
 		.top_box0311 {
@@ -55,7 +55,7 @@
 	<body>
 		<div class="box_wrap">
 			<div class="top_box0311">
-				<div style="float:left; width:147px; height:188px; background: url(../images/timeout.png)"></div>
+				<div style="float:left; width:147px; height:188px; background: url(${pageContext.request.contextPath}/images/timeout.png)"></div>
 				<div style="float:left; width:400px; height:188px; padding-top:50px; padding-left:10px;">
 				<p>您的操作已超时，请重新登录</p>
 				</div>

@@ -80,6 +80,10 @@
 		<servlet-name>QueryTask</servlet-name>
 		<url-pattern>/queryTask</url-pattern>
 	</servlet-mapping>
+	<!-- session time minute -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
 	<welcome-file-list>
 		<welcome-file>index.action</welcome-file>
 		<welcome-file>index.jsp</welcome-file>

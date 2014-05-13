@@ -14,7 +14,6 @@
 	  <role roleid="2" describle="管理员">
 	    <grp name="日常工作">
         <fun name="任务管理" action="taskManageAction_home.action" />
-        <fun name="号码簿管理" action="numberManageAction_home.action" />
 	    </grp>
 	  </role>
 	  <list name="taskstate" describle="任务状态">

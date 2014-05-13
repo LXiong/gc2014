@@ -64,7 +64,7 @@
         <td width="15%">呼叫号码</td>
         <td width="15%">状态</td>
         <td width="15%">呼叫时间</td>
-        <td width="15%">通话时长</td>
+        <td width="15%">通话时长(秒)</td>
         <td width="20%">操作</td>
     </tr>
     </thead>
@@ -88,7 +88,7 @@
 </table>
 </div>
 <div class="split-page">
-	<input type="hidden" id="pageRows" value="23"/>
+	<input type="hidden" id="pageRows" value="28"/>
 	<div id="changePage"></div>
 </div>
 

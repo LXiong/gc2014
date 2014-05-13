@@ -26,28 +26,28 @@ public class LogonFilter implements Filter {
 	public void init(FilterConfig arg0) throws ServletException {
 		list.add("/index.action");
 		list.add("/ajaxlogin.action");
-		list.add("/userAction_login.action");
 		list.add("/error.jsp");
-		list.add("/userAction_home.action");
+		//list.add("/userAction_home.action");
 	}
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		// 2.从session(vts)对象中获取当前登录的用户
-		DotSession ds = (DotSession)request.getSession().getAttribute("vts");
-		// 如果session中存在用户信息, 则表示正常访问, 此时需要放行
-		if (ds != null) {
-			// 如果从session中获取的用户对象不为空, 则放行
-			chain.doFilter(request, response);
-			return;
-		}
+		
 		// 1.获取页面中的访问的路径连接
 		String path = request.getServletPath();
 		log.info("access path: " + path);
 		if (list!=null && list.contains(path)) {
 			// 如果页面中获取的访问连接与定义的可放行的连接一致, 则放行
+			chain.doFilter(request, response);
+			return;
+		}
+		// 2.从session(vts)对象中获取当前登录的用户
+		DotSession ds = (DotSession)request.getSession().getAttribute("vts");
+		// 如果session中存在用户信息, 则表示正常访问, 此时需要放行
+		if (ds != null) {
+			// 如果从session中获取的用户对象不为空, 则放行
 			chain.doFilter(request, response);
 			return;
 		}

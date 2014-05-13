@@ -6,6 +6,7 @@ function popEditTask(s,t1,t2,t3){
 	document.getElementById("t1").value='';
 	document.getElementById("t2").value='';
 	document.getElementById("t3").value='';
+	document.getElementById("t4").value='';
 	if(s=="edit"){
 		tt.innerHTML="<font color='#fff'>修改任务信息</font>";
 		document.getElementById("t1").value=1;
@@ -64,6 +65,10 @@ function popEditTask(s,t1,t2,t3){
 	}; 
 }
 function subTaskBt(){
-	document.taskForm.action="taskManageAction_saveTask.action";
-	document.taskForm.submit();
+	if(document.getElementById("t3").value!=''){
+		document.taskForm.action="taskManageAction_saveTask.action";
+		document.taskForm.submit();
+	}else{
+		alert("任务名称不能为空");
+	}
 }
