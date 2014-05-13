@@ -1,5 +1,8 @@
 package cn.voicet.gc.web.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -81,7 +84,8 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 	public String exportTask() throws Exception{
 		DotSession ds = DotSession.getVTSession(request);
 		taskManageService.getTaskManageInfo(ds);
-		String fileName = new String("任务统计信息".getBytes("gb2312"), "ISO8859-1") +".xls";
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		String fileName = new String("任务统计信息".getBytes("gb2312"), "ISO8859-1")+format.format(new Date())+".xls";
 	    String filePath = request.getSession().getServletContext().getRealPath("excelTemplate")+"/"+"task.xls";
 	    ExcelTemplateGenerator generator = new ExcelTemplateGenerator(filePath, fileName, 1, ds.list);
 	    generator.setColList("c0,c1,c2,c3,c4,c5,c6,c7");
@@ -96,7 +100,8 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 		DotSession ds = DotSession.getVTSession(request);
 		log.info("exportTel tid:"+tid);
 		taskManageService.viewNumberWithTaskId(ds, tid);
-		String fileName = new String("任务号码统计信息".getBytes("gb2312"), "ISO8859-1") +".xls";
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		String fileName = new String("任务号码统计信息".getBytes("gb2312"), "ISO8859-1")+format.format(new Date())+".xls";
 	    String filePath = request.getSession().getServletContext().getRealPath("excelTemplate")+"/"+"task-tel.xls";
 	    ExcelTemplateGenerator generator = new ExcelTemplateGenerator(filePath, fileName, 1, ds.list);
 	    generator.setColList("c0,c1,c2,c3,c4");
