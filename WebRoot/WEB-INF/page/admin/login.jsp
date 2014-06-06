@@ -72,11 +72,11 @@
 											<tbody>
 												<tr height="31px" style="padding-top:6px;">
 													<th>账号&nbsp;</th>
-													<td><input type="text" id="account" name="account" tabindex="1" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
+													<td><input type="text" id="account" name="account" autocomplete="off" value="" placeholder="输入账号" tabindex="1" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
 												</tr>
 												<tr height="31px">
 													<th>密码&nbsp;</th>
-													<td><input type="password" id="password" name="password" tabindex="2" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
+													<td><input type="password" id="password" name="password" autocomplete="off" value="" placeholder="输入密码" tabindex="2" class="inputbox" onblur="this.className='inputbox'" onfocus="this.className='inputbox2'"/></td>
 												</tr>
 												<tr height="31px">
 													<th></th>
