@@ -20,10 +20,13 @@
 <table class="data_list" cellpadding="0" cellspacing="0" width="100%">
    	<thead>
     <tr class="tabtr">
-        <td width="6%">任务编号</td>
-        <td width="6%">任务状态</td>
-        <td width="15%">任务名称</td>
-        <td width="15%">创建日期时间</td>
+        <td width="4%">编号</td>
+        <td width="5%">状态</td>
+        <td width="10%">任务名称</td>
+        <td width="6%">工作模式</td>
+        <td width="10%">最大试呼次数</td>
+        <td width="10%">呼叫间隔时长(分钟)</td>
+        <td width="10%">创建日期时间</td>
         <td width="6%">号码总数</td>
         <td width="8%">呼叫完成数</td>
         <td width="8%">呼叫应答数</td>
@@ -39,21 +42,24 @@
     <tbody id="splitpage">
     <s:iterator value="#session.vts.list" var="ls" status="sc">
     <tr style="display:none">
-        <td><s:property value="#ls.c0"/></td>
+        <td><s:property value="#ls.tid"/></td>
         <td>
-        	<s:property value="#application.vta.getListString('taskstate',#ls.c1)"/>
+        	<s:property value="#application.vta.getListString('taskstate',#ls.state)"/>
         </td>
-        <td align="left" title="任务名称: <s:property value="#ls.c2"/>&#13任务内容: <s:property value="#ls.c3"/>">&nbsp;<s:property value="#ls.c2.length()>11?#lsc2.substring(0,10)+'...':#ls.c2"/></td>
-        <td><s:property value="#ls.c4"/></td>
-        <td><s:property value="#ls.c5"/></td>
-        <td><s:property value="#ls.c6"/></td>
-        <td><s:property value="#ls.c7"/></td>
+        <td align="left" title="任务名称: <s:property value="#ls.tname"/>&#13任务内容: <s:property value="#ls.context"/>">&nbsp;<s:property value="#ls.tname.length()>11?#ls.tname.substring(0,10)+'...':#ls.tname"/></td>
+        <td><s:property value="#ls.workmode"/></td>
+        <td><s:property value="#ls.maxtrys"/></td>
+        <td><s:property value="#ls.nextcalldelay"/></td>
+        <td><s:property value="#ls.cdt"/></td>
+        <td><s:property value="#ls.m"/></td>
+        <td><s:property value="#ls.fn"/></td>
+        <td><s:property value="#ls.sn"/></td>
         <td>
-        	<a href="${pageContext.request.contextPath }/taskManageAction_stateTask.action?tid=<s:property value="#ls.c0"/>&state=1">激活</a>
-        	<a href="${pageContext.request.contextPath }/taskManageAction_stateTask.action?tid=<s:property value="#ls.c0"/>&state=0">停止</a>
-        	<a href="${pageContext.request.contextPath }/taskManageAction_viewNumber.action?tid=<s:property value="#ls.c0"/>">号码管理</a>
-        	<a href="javascript:popEditTask('edit','<s:property value="#ls.c0"/>','<s:property value="#ls.c2"/>','<s:property value="#ls.c3"/>')">修改</a>
-        	<a href="javascript:if(confirm('确定要删除吗?')) location.href='${pageContext.request.contextPath }/taskManageAction_deleteTask.action?tid=<s:property value="#ls.c0"/>'">删除</a>
+        	<a href="${pageContext.request.contextPath }/taskManageAction_stateTask.action?tid=<s:property value="#ls.tid"/>&state=1">激活</a>
+        	<a href="${pageContext.request.contextPath }/taskManageAction_stateTask.action?tid=<s:property value="#ls.tid"/>&state=0">停止</a>
+        	<a href="${pageContext.request.contextPath }/taskManageAction_viewNumber.action?tid=<s:property value="#ls.tid"/>">号码管理</a>
+        	<a href="javascript:popEditTask('edit','<s:property value="#ls.tid"/>','<s:property value="#ls.tname"/>','<s:property value="#ls.context"/>')">修改</a>
+        	<a href="javascript:if(confirm('确定要删除吗?')) location.href='${pageContext.request.contextPath }/taskManageAction_deleteTask.action?tid=<s:property value="#ls.tid"/>'">删除</a>
         </td>
     </tr>
     </s:iterator>
