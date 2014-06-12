@@ -88,7 +88,7 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 		String fileName = new String("任务统计信息".getBytes("gb2312"), "ISO8859-1")+format.format(new Date())+".xls";
 	    String filePath = request.getSession().getServletContext().getRealPath("excelTemplate")+"/"+"task.xls";
 	    ExcelTemplateGenerator generator = new ExcelTemplateGenerator(filePath, fileName, 1, ds.list);
-	    generator.setColList("tid,state,tname,workmode,maxtrys,nextcalldelay,context,cdt,m,fn,sn");
+	    generator.setColList("tid,state,tname,workmode,maxtrys,nextcalldelay,context,cdt,rn,fn,sn");
 	    generator.setDrawBoard();
 	    generator.setEffectColNum(11);
 	    generator.exportExcelWithTemplate(response);

@@ -53,7 +53,7 @@
         <td><s:property value="#ls.maxtrys"/></td>
         <td><s:property value="#ls.nextcalldelay"/></td>
         <td><s:property value="#ls.cdt"/></td>
-        <td><s:property value="#ls.m"/></td>
+        <td><s:property value="#ls.rn"/></td>
         <td><s:property value="#ls.fn"/></td>
         <td><s:property value="#ls.sn"/></td>
         <td>
