@@ -47,8 +47,16 @@
         	<s:property value="#application.vta.getListString('taskstate',#ls.state)"/>
         </td>
         <td align="left" title="任务名称: <s:property value="#ls.tname"/>&#13任务内容: <s:property value="#ls.context"/>">&nbsp;<s:property value="#ls.tname.length()>11?#ls.tname.substring(0,10)+'...':#ls.tname"/></td>
-        <td>
-        	<s:property value="#ls.workmode"/>
+        <td title="<s:property value="#application.vta.getListString('workmode',#ls.workmode.length()>0?#ls.workmode:'2')"/>">
+        	<s:if test="#ls.workmode.length()>0 && #ls.workmode==0">
+        		TTS合成...
+        	</s:if>
+        	<s:elseif test="#ls.workmode.length()>0 && #ls.workmode==1">
+        		转入业务...
+        	</s:elseif>
+        	<s:else>
+        		&nbsp;
+        	</s:else>
        	</td>
         <td><s:property value="#ls.maxtrys"/></td>
         <td><s:property value="#ls.nextcalldelay"/></td>

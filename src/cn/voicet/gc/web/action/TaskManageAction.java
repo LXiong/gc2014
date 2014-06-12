@@ -91,7 +91,7 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 	    generator.setColList("tid,state,tname,workmode,maxtrys,nextcalldelay,context,cdt,rn,fn,sn");
 	    generator.setDrawBoard();
 	    generator.setEffectColNum(11);
-	    generator.exportExcelWithTemplate(response);
+	    generator.exportExcelWithTemplate1(response);
 		return null; 
 	}
 	
@@ -107,7 +107,7 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 	    generator.setColList("ttid,telnum,state,calldt,talkl");
 	    generator.setDrawBoard();
 	    generator.setEffectColNum(5);
-	    generator.exportExcelWithTemplate(response);
+	    generator.exportExcelWithTemplate2(response);
 	    rflag = rflag + 1;
 		log.info("exportTask rflag: "+rflag);
 		return null; 
