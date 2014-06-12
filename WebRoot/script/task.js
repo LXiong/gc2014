@@ -1,4 +1,4 @@
-function popEditTask(s,t1,t2,t3){
+function popEditTask(s,t1,t2,t3,t4,t5,t6){
 	//title
 	var tt = document.getElementById("t-title");
 	tt.innerHTML="";
@@ -7,12 +7,18 @@ function popEditTask(s,t1,t2,t3){
 	document.getElementById("t2").value='';
 	document.getElementById("t3").value='';
 	document.getElementById("t4").value='';
+	document.getElementById("t5").value='';
+	document.getElementById("t6").value='';
+	document.getElementById("t7").value='';
 	if(s=="edit"){
 		tt.innerHTML="<font color='#fff'>修改任务信息</font>";
 		document.getElementById("t1").value=1;
 		document.getElementById("t2").value=t1;
 		document.getElementById("t3").value=t2;
 		document.getElementById("t4").value=t3;
+		document.getElementById("t5").value=t4;
+		document.getElementById("t6").value=t5;
+		document.getElementById("t7").value=t6;
 	}else{
 		tt.innerHTML="<font color='#fff'>添加任务信息</font>";
 		document.getElementById("t1").value=0;

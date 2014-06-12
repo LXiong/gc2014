@@ -18,6 +18,8 @@ ul{margin:0; padding:0; list-style:none;}
 .button45{width:36px; height:18px; display:inline; color:#FFF; border:medium none; background:#54A3EA;cursor:pointer;}
 
 .tabtr{background:url(../images/tab-head.jpg) repeat-x; height:20px; font-weight:bold; color:#2284E1; }
+.tabtr2{background:url(../images/tablehead2.jpg) repeat-x; height:40px; font-weight:bold; color:#2284E1; }
+
 
 /* leftCon */
 #leftCon{width:666px; height:672px; float:left; text-align:center;}
@@ -236,5 +238,6 @@ ul{margin:0; padding:0; list-style:none;}
 
 /** gc2014 */
 .task-input{width:302px; height:20px;}
+.task-input2{width:138px; height:20px;}
 #task-tel-title{width:866px; height:20px; line-height:22px; padding-top:2px;}
 #task-tel-title span{float:right; width:60px;}
