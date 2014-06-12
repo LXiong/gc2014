@@ -118,7 +118,7 @@ public class TaskManageDaoImpl extends BaseDaoImpl implements TaskManageDao {
 				if(null!=rs){
 					while(rs.next()){
 						map = new HashMap();
-						ds.putMapData(map, rs);
+						ds.putMapDataByColName(map, rs);
 		        		ds.list.add(map);
 					}
 				}

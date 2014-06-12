@@ -71,16 +71,16 @@
     <tbody id="splitpage">
     <s:iterator value="#session.vts.list" var="ls" status="sc">
     <tr style="display:none">
-        <td><s:property value="#ls.c0"/></td>
-        <td align="left">&nbsp;<s:property value="#ls.c1"/></td>
+        <td><s:property value="#ls.ttid"/></td>
+        <td align="left">&nbsp;<s:property value="#ls.telnum"/></td>
         <td>
-        	<s:property value="#application.vta.getListString('callresult',#ls.c2)"/>
+        	<s:property value="#application.vta.getListString('callresult',#ls.state)"/>
         </td>
-        <td><s:property value="#ls.c3"/></td>
-        <td><s:property value="#ls.c4"/></td>
+        <td><s:property value="#ls.calldt"/></td>
+        <td><s:property value="#ls.talkl"/></td>
         <td>
-        	<a href="javascript:popEditTel('edit','<s:property value="#ls.c0"/>','<s:property value="#ls.c1"/>')">修改</a>
-        	<a href="javascript:if(confirm('确定要删除吗?')) location.href='${pageContext.request.contextPath }/taskManageAction_deleteTel.action?tid=<s:property value="tid"/>&ttid=<s:property value="#ls.c0"/>&rflag=<s:property value="rflag"/>'">删除</a>
+        	<a href="javascript:popEditTel('edit','<s:property value="#ls.ttid"/>','<s:property value="#ls.telnum"/>')">修改</a>
+        	<a href="javascript:if(confirm('确定要删除吗?')) location.href='${pageContext.request.contextPath }/taskManageAction_deleteTel.action?tid=<s:property value="tid"/>&ttid=<s:property value="#ls.ttid"/>&rflag=<s:property value="rflag"/>'">删除</a>
         </td>
     </tr>
     </s:iterator>
