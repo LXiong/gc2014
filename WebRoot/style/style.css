@@ -6,6 +6,7 @@ a:link{color:#00f; text-decoration:none}	/* 未访问的链接 */
 a:active{color:#00f; text-decoration:none}	/* 激活链接 */
 a:visited{color:#00f; text-decoration:none}	/* 已访问的链接 */
 a:hover{color:#00f; text-decoration:none}	/* 鼠标在链接上 */
+table{border-collapse:collapse; empty-cells:show;}
 /* 重置浏览器的默认样式 */
 h1,h2,h3,p,ul,li,dl,dt,dd,img,input{margin:0; padding:0; list-style:none;}
 ul{margin:0; padding:0; list-style:none;}
