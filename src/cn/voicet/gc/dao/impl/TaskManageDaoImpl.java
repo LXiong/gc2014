@@ -18,7 +18,7 @@ import cn.voicet.gc.util.DotSession;
 import cn.voicet.gc.web.form.TaskManageForm;
 
 @Repository(TaskManageDao.SERVICE_NAME)
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked","static-access"})
 public class TaskManageDaoImpl extends BaseDaoImpl implements TaskManageDao {
 
 	public void getTaskManageInfo(final DotSession ds) {
@@ -35,7 +35,7 @@ public class TaskManageDaoImpl extends BaseDaoImpl implements TaskManageDao {
 				if(null!=rs){
 					while(rs.next()){
 						map = new HashMap();
-						ds.putMapData(map, rs);
+						ds.putMapDataByColName(map, rs);
 		        		ds.list.add(map);
 					}
 				}
