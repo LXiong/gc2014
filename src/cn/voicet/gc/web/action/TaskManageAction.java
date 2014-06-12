@@ -88,9 +88,9 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 		String fileName = new String("任务统计信息".getBytes("gb2312"), "ISO8859-1")+format.format(new Date())+".xls";
 	    String filePath = request.getSession().getServletContext().getRealPath("excelTemplate")+"/"+"task.xls";
 	    ExcelTemplateGenerator generator = new ExcelTemplateGenerator(filePath, fileName, 1, ds.list);
-	    generator.setColList("c0,c1,c2,c3,c4,c5,c6,c7");
+	    generator.setColList("tid,state,tname,workmode,maxtrys,nextcalldelay,context,cdt,m,fn,sn");
 	    generator.setDrawBoard();
-	    generator.setEffectColNum(8);
+	    generator.setEffectColNum(11);
 	    generator.exportExcelWithTemplate(response);
 		return null; 
 	}
@@ -104,7 +104,7 @@ public class TaskManageAction extends BaseAction implements ModelDriven<TaskMana
 		String fileName = new String("任务号码统计信息".getBytes("gb2312"), "ISO8859-1")+format.format(new Date())+".xls";
 	    String filePath = request.getSession().getServletContext().getRealPath("excelTemplate")+"/"+"task-tel.xls";
 	    ExcelTemplateGenerator generator = new ExcelTemplateGenerator(filePath, fileName, 1, ds.list);
-	    generator.setColList("c0,c1,c2,c3,c4");
+	    generator.setColList("ttid,telnum,state,calldt,talkl");
 	    generator.setDrawBoard();
 	    generator.setEffectColNum(5);
 	    generator.exportExcelWithTemplate(response);

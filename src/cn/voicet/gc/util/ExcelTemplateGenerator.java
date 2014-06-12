@@ -66,6 +66,7 @@ public class ExcelTemplateGenerator {
 	/** 根据模板文件导出excel */
 	public void exportExcelWithTemplate(HttpServletResponse response) throws Exception {
 		ServletOutputStream out = response.getOutputStream(); //获得输出流 
+		String arrayt[]=new String[60];
 		if(null!=filePath){
 			File file = new File(filePath);
 			if(file.exists() && file.isFile()){
@@ -82,9 +83,23 @@ public class ExcelTemplateGenerator {
 		        HSSFCell dataCell = null;
 		        String sColName;
 		        HSSFCellStyle style=null;
+		        HSSFRow row = sheet.getRow(this.srowData);//HeadRowNum  
+		        for(int i=0;i<60;i++)
+		        {
+		        	HSSFCell cell = row.getCell(i);
+		        	if(null!=cell)
+		        	{
+		        		arrayt[i]=cell.getStringCellValue();
+		        	}
+		        	else
+		        	{
+		        		arrayt[i]="";
+		        	}
+		        }
 		        //设置边框
-		        if(isDrawBoard){
-			        style = workBook.createCellStyle();
+		        style = workBook.createCellStyle();
+		        if(isDrawBoard)
+		        {
 			        style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 			        style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 			        style.setBorderRight(HSSFCellStyle.BORDER_THIN);
@@ -94,7 +109,6 @@ public class ExcelTemplateGenerator {
 					Map numMap=(Map)fieldData.get(i);
 					dataRow = sheet.createRow(i+srowData);
 					int dl= endcol>0 ? endcol : numMap.size();
-					
 					for(int j=0; j<dl; j++){
 						dataCell = dataRow.createCell(j);
 						if(isDrawBoard){
@@ -110,7 +124,22 @@ public class ExcelTemplateGenerator {
 							sColName = "c"+String.valueOf(j);
 						}
 						if(sColName!="^"){
-							dataCell.setCellValue((String)numMap.get(sColName));
+							if( arrayt[j].equals("N"))
+							{
+								String excelData = (String)numMap.get(sColName); 
+								if(null!=excelData && excelData.length()>0)
+								{
+									dataCell.setCellValue(Double.parseDouble(excelData));
+								}
+								else
+								{
+									
+								}
+							}
+							else
+							{
+								dataCell.setCellValue((String)numMap.get(sColName));
+							}
 						}
 					}
 				}
