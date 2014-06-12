@@ -50,19 +50,25 @@ public class TaskManageDaoImpl extends BaseDaoImpl implements TaskManageDao {
 					DataAccessException {
 				CallableStatement cs = null; 
 				if(taskManageForm.getTasktxt()[0].equals("0")){
-					cs = conn.prepareCall("{call sp_task_add(?,?,?,?)}");
+					cs = conn.prepareCall("{call sp_task_add(?,?,?,?,?,?,?)}");
 					cs.setInt(1, ds.uid);
-					cs.setString(2, taskManageForm.getTasktxt()[2]);
-					cs.setString(3, taskManageForm.getTasktxt()[3]);
-					cs.registerOutParameter(4, Types.INTEGER);
+					cs.setString(2, taskManageForm.getTasktxt()[2]);	//name
+					cs.setString(3, taskManageForm.getTasktxt()[3]);	//workmode
+					cs.setString(4, taskManageForm.getTasktxt()[4]);	//maxtrys
+					cs.setString(5, taskManageForm.getTasktxt()[5]);	//trydelay
+					cs.setString(6, taskManageForm.getTasktxt()[6]);	//context
+					cs.registerOutParameter(7, Types.INTEGER);
 					cs.execute();
-					return cs.getInt(4);
+					return cs.getInt(7);
 				}else{
-					cs = conn.prepareCall("{call sp_task_update(?,?,?,?)}");
+					cs = conn.prepareCall("{call sp_task_update(?,?,?,?,?,?,?)}");
 					cs.setInt(1, ds.uid);
-					cs.setString(2, taskManageForm.getTasktxt()[1]);
-					cs.setString(3, taskManageForm.getTasktxt()[2]);
-					cs.setString(4, taskManageForm.getTasktxt()[3]);
+					cs.setString(2, taskManageForm.getTasktxt()[1]);	//tid
+					cs.setString(3, taskManageForm.getTasktxt()[2]);	//name
+					cs.setString(4, taskManageForm.getTasktxt()[3]);	//workmode
+					cs.setString(5, taskManageForm.getTasktxt()[4]);	//maxtrys
+					cs.setString(6, taskManageForm.getTasktxt()[5]);	//trydelay
+					cs.setString(7, taskManageForm.getTasktxt()[6]);	//context
 					cs.execute();
 					return null;
 				}

@@ -47,7 +47,9 @@
         	<s:property value="#application.vta.getListString('taskstate',#ls.state)"/>
         </td>
         <td align="left" title="任务名称: <s:property value="#ls.tname"/>&#13任务内容: <s:property value="#ls.context"/>">&nbsp;<s:property value="#ls.tname.length()>11?#ls.tname.substring(0,10)+'...':#ls.tname"/></td>
-        <td><s:property value="#ls.workmode"/></td>
+        <td>
+        	<s:property value="#ls.workmode"/>
+       	</td>
         <td><s:property value="#ls.maxtrys"/></td>
         <td><s:property value="#ls.nextcalldelay"/></td>
         <td><s:property value="#ls.cdt"/></td>
@@ -76,9 +78,9 @@
 <div id="win-task" style="line-height: 30px">
 <h2 style="line-height:20px; text-align:left"><span id="t-title"><font color="#fff">修改任务信息</font></span></h2>
 <form name="taskForm" action="" method="post">
-<!-- tid -->
-<input type="hidden" id="t1" name="tasktxt"/>
 <!-- eidt or add flag -->
+<input type="hidden" id="t1" name="tasktxt"/>
+<!-- tid -->
 <input type="hidden" id="t2" name="tasktxt"/>
 <div class="edit-list">
 	<table width="500px" cellpadding="0" cellspacing="0">
