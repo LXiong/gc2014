@@ -17,9 +17,9 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="jdbcUrl" value="jdbc:sqlserver://voicet.oicp.net:5566;databaseName=gc2014" />
-		<property name="user" value="sa" />
-		<property name="password" value="begin" />
+		<property name="jdbcUrl" value="jdbc:sqlserver://ip:port;databaseName=dbName" />
+		<property name="user" value="" />
+		<property name="password" value="" />
 		<property name="minPoolSize" value="5" />
 		<property name="maxPoolSize" value="30" />
 		<property name="initialPoolSize" value="10" />
